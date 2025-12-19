@@ -67,7 +67,7 @@ ${NAME} : ${OBJ_FILES}
 	${CC} ${CFLAGS} -c $< -o $@
 
 clean:
-	rm -f *.o
+	rm -f ${OBJ_FILES}
 
 fclean: clean
 	rm -f ${NAME}

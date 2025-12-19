@@ -1,35 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
+/*   liste_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tle-rhun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/18 17:15:00 by tle-rhun          #+#    #+#             */
-/*   Updated: 2025/12/19 19:19:17 by tle-rhun         ###   ########.fr       */
+/*   Created: 2025/12/19 20:13:46 by tle-rhun          #+#    #+#             */
+/*   Updated: 2025/12/19 21:16:50 by tle-rhun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-t_list	*ft_lstnew(int content)
+t_liste	*lstnew(int content)
 {
-	t_list	*newlst;
+	t_liste	*newlst;
 
-	newlst = malloc(sizeof (t_list));
+	newlst = malloc(sizeof (t_liste));
 	if (!newlst)
 		return (NULL);
 	newlst->content = content;
 	newlst->next = NULL;
+	newlst->previous = NULL;
 	return (newlst);
 }
-
-/* #include <stdio.h>
-int main (void)
+void	lstadd_front(t_liste **lst, t_liste *new, t_liste *previous)
 {
-	int content = 12;
-	t_list * lst= ft_lstnew(&content);
-	printf("newlst:%d", *(int *)(lst->content));
-	free(lst);
-	return (0);
-} */
+	new->previous = previous;
+	new->next = *lst;
+	*lst = new;
+}
+
+int	lstsize(t_liste *lst)
+{
+	int	i;
+
+	i = 0;
+	while (lst != NULL)
+	{
+		lst = lst->next;
+		i++;
+	}
+	return (i);
+}
