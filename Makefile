@@ -11,6 +11,7 @@ CFLAGS=-Wall -Wextra -Werror
 #### SOURCE ####
 SRC_FILES = ft_strjoin.c \
 		liste_utils.c \
+		operation.c \
 		parsing.c
 
 OBJ_FILES = $(SRC_FILES:.c=.o)
@@ -20,10 +21,10 @@ all: ${NAME}
 
 
 ${NAME} : ${LIBFT} ${OBJ_FILES} 
-	${CC} ${CFLAGS} -o ${NAME} ${OBJ_FILES} ${LIBFT}
+	${CC} ${CFLAGS} -o ${NAME} ${OBJ_FILES} ${LIBFT} -g3
 
 %.o: %.c
-	${CC} ${CFLAGS} -c $< -o $@
+	${CC} ${CFLAGS} -c $< -o $@ -g3
 ${LIBFT} :
 	$(MAKE) -C ./libft
 clean:

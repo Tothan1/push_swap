@@ -6,7 +6,7 @@
 /*   By: tle-rhun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 16:41:15 by tle-rhun          #+#    #+#             */
-/*   Updated: 2025/12/19 21:17:22 by tle-rhun         ###   ########.fr       */
+/*   Updated: 2025/12/22 15:33:42 by tle-rhun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,16 @@ typedef struct s_liste
 }			t_liste;
 t_liste	*lstnew(int content);
 void	lstadd_front(t_liste **lst, t_liste *new, t_liste *previous);
-int	lstsize(t_liste *lst);
+void	lstadd_back(t_liste **lst, t_liste *new, t_liste *previous);
+t_liste	*lstlast(t_liste *lst);
+t_liste	*lstfirst(t_liste *lst);
+void	lstdelone(t_liste *lst);
+void	lstclear(t_liste **lst);
 
+
+/* operation*/
+void	operation_push(t_liste	**from, t_liste	**dest);
+void	operation_swap(t_liste	**stack);
 /* fonction*/
 int		PUSH_SWAP(const char *str, ...);
 int	ft_seplen(char *sep);
