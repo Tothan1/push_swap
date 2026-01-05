@@ -6,7 +6,7 @@
 /*   By: tle-rhun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 13:36:13 by tle-rhun          #+#    #+#             */
-/*   Updated: 2025/12/22 20:40:30 by tle-rhun         ###   ########.fr       */
+/*   Updated: 2026/01/05 11:53:18 by tle-rhun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	free_all(char **str)
 }
 
 #include <stdio.h>
-t_liste	*recover_arg_in_linked_list(char **av, int ac, t_liste	**stack_a)
+t_liste	**recover_arg_in_linked_list(char **av, int ac, t_liste	**stack_a)
 {
 	int		a;
 	char	*join;
@@ -88,7 +88,7 @@ t_liste	*recover_arg_in_linked_list(char **av, int ac, t_liste	**stack_a)
 	last_a->next = *stack_a;
 	(*stack_a)->previous = last_a;
 	free_all (split);
-	return (*stack_a);
+	return (stack_a);
 }
 
 
@@ -96,24 +96,26 @@ int	main(int ac, char **av)
 {
 	int		a;
 	t_liste	*stack_a;
+	t_liste	**head_stack_a = NULL;
 	// t_liste	*tempstack_a;
 	// t_liste	*tempstack_b;
 	// t_liste	*stack_b;
 
 	// stack_b = NULL;
+	// *head_stack_a = NULL;
 	if (ac < 2)
 		error();
-	recover_arg_in_linked_list(av, ac, &stack_a);
+	head_stack_a =  recover_arg_in_linked_list(av, ac, &stack_a);
 	a = 0;
 
 	printf("taille de la liste %d\n", lstsize(stack_a));
 	//Sa
 	// operation_swap(&stack_a);
 	// Ra
-	operation_rotate(&stack_a, lstsize(stack_a));
+	operation_rotate(&stack_a, head_stack_a);
 	//Rra
 	// operation_reverse_rotate(&stack_a, lstsize(stack_a));
-	//Pb
+	// Pb
 	// operation_push(&stack_a, &stack_b);
 	// operation_push(&stack_a, &stack_b);
 	//Pa
@@ -121,16 +123,16 @@ int	main(int ac, char **av)
 
 
 
-	
+	// printf("Tête de la liste chaînnée A%d:%d", a,(*head_stack_a)->content);
 	//voir pour débuguer mais enlever après	
 
 	while (a < ac - 1)
 	{
-		printf("Maillon de la liste chaînnée A%d:%d", a, stack_a->content);
-		printf("  Previous:%d", (stack_a->previous)->content);
-		printf("  Next:%d\n", (stack_a->next)->content);
+		printf("Maillon de la liste chaînnée A%d:%d", a, (*head_stack_a)->content);
+		printf("  Previous:%d", ((*head_stack_a)->previous)->content);
+		printf("  Next:%d\n", ((*head_stack_a)->next)->content);
 
-		stack_a = stack_a->next;
+		(*head_stack_a) = (*head_stack_a)->next;
 		a++;
 	}
 /* 	a = 0;

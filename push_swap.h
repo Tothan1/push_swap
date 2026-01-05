@@ -6,7 +6,7 @@
 /*   By: tle-rhun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 16:41:15 by tle-rhun          #+#    #+#             */
-/*   Updated: 2025/12/22 18:26:47 by tle-rhun         ###   ########.fr       */
+/*   Updated: 2026/01/05 11:55:33 by tle-rhun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,13 @@ typedef struct s_liste
 	struct s_liste	*next;
 	struct s_liste	*previous;
 }			t_liste;
+
+typedef struct h_liste
+{
+	int			    content;
+	struct h_liste	*first;
+}			head_liste;
+
 t_liste	*lstnew(int content);
 void	lstadd_front(t_liste **lst, t_liste *new, t_liste *previous);
 void	lstadd_back(t_liste **lst, t_liste *new);
@@ -35,7 +42,7 @@ int	lstsize(t_liste *lst);
 void	operation_push(t_liste	**from, t_liste	**dest);
 void	operation_swap(t_liste	**stack);
 void	operation_reverse_rotate(t_liste **stack, int sizelst);
-void	operation_rotate(t_liste **stack, int sizelst);
+void	operation_rotate(t_liste **stack, t_liste **head_stack_a);
 /* fonction*/
 int		PUSH_SWAP(const char *str, ...);
 int	ft_seplen(char *sep);

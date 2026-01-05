@@ -6,7 +6,7 @@
 /*   By: tle-rhun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 11:33:55 by tle-rhun          #+#    #+#             */
-/*   Updated: 2025/12/22 20:47:17 by tle-rhun         ###   ########.fr       */
+/*   Updated: 2026/01/05 11:55:15 by tle-rhun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,21 +50,7 @@ void	operation_reverse_rotate(t_liste **stack, int sizelst)
 	}
 	(*stack)->content = start;
 }
-void	operation_rotate(t_liste **stack, int sizelst)
+void	operation_rotate(t_liste **stack, t_liste **head_stack_a)
 {
-	int	temp;
-	int	see;
-	temp = ((*stack)->previous)->content;
-	// *stack = ((*stack)->previous);
-	while (sizelst > 0)
-	{
-		(*stack)->content = temp;
-		temp = ((*stack)->previous)->content;
-		((*stack)->previous)->content = (*stack)->content;
-		*stack = ((*stack)->previous)->previous;
-		see = (*stack)->content;
-		sizelst--;
-
-	}
-	
+	*head_stack_a = (*stack)->next;
 }
