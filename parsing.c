@@ -6,7 +6,7 @@
 /*   By: tle-rhun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 13:36:13 by tle-rhun          #+#    #+#             */
-/*   Updated: 2026/01/05 11:53:18 by tle-rhun         ###   ########.fr       */
+/*   Updated: 2026/01/06 18:57:47 by tle-rhun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,8 @@ int	main(int ac, char **av)
 	int		a;
 	t_liste	*stack_a;
 	t_liste	**head_stack_a = NULL;
-	// t_liste	*tempstack_a;
+	// t_liste	**head_stack_b = NULL;
+	t_liste	*tempstack_a;
 	// t_liste	*tempstack_b;
 	// t_liste	*stack_b;
 
@@ -109,12 +110,16 @@ int	main(int ac, char **av)
 	a = 0;
 
 	printf("taille de la liste %d\n", lstsize(stack_a));
+	indexsort(stack_a);
 	//Sa
 	// operation_swap(&stack_a);
 	// Ra
-	operation_rotate(&stack_a, head_stack_a);
+	// operation_rotate(&stack_a, head_stack_a);
 	//Rra
-	// operation_reverse_rotate(&stack_a, lstsize(stack_a));
+	// operation_reverse_rotate(&stack_a, head_stack_a);
+	//Rrr
+	// operation_reverse_rotate(&stack_a, head_stack_a);
+	// operation_reverse_rotate(&stack_b, head_stack_b);
 	// Pb
 	// operation_push(&stack_a, &stack_b);
 	// operation_push(&stack_a, &stack_b);
@@ -126,22 +131,13 @@ int	main(int ac, char **av)
 	// printf("Tête de la liste chaînnée A%d:%d", a,(*head_stack_a)->content);
 	//voir pour débuguer mais enlever après	
 
-	while (a < ac - 1)
-	{
-		printf("Maillon de la liste chaînnée A%d:%d", a, (*head_stack_a)->content);
-		printf("  Previous:%d", ((*head_stack_a)->previous)->content);
-		printf("  Next:%d\n", ((*head_stack_a)->next)->content);
-
-		(*head_stack_a) = (*head_stack_a)->next;
-		a++;
-	}
-/* 	a = 0;
+	/* 	a = 0;
 	while (a < ac)
 	{
 		tempstack_a = stack_a;
 		stack_a = tempstack_a->next;
 		free (tempstack_a);
-	} */
+		} */
 	/* while (a < 1)
 	{
 		printf("Maillon de la liste chaînnée B%d: %d\n", a , stack_b->content);
@@ -149,14 +145,25 @@ int	main(int ac, char **av)
 		stack_b = tempstack_b->next;
 		free(tempstack_b);
 		a++;
-	} */
+		} */
+	
+	while (a < ac - 1)
+	{
+		printf("Maillon de la liste chaînnée  A%d: %d index:%d\n", a, (*head_stack_a)->content, (*head_stack_a)->index);
+		// printf("  Previous:%d", ((*head_stack_a)->previous)->content);
+		// printf("  Next:%d\n", ((*head_stack_a)->next)->content);
+		tempstack_a = (*head_stack_a);
+		(*head_stack_a) = stack_a->next;
+		free(tempstack_a);
+		a++;
+	}
 /* 	while (a < 1)
 	{
-		printf("Maillon de la liste chaînnée  A%d: %d      B:%d\n", a, stack_a->content , stack_b->content);
-		tempstack_a = stack_a;
-		tempstack_b = stack_b;
-		stack_a = tempstack_a->next;
-		stack_b = tempstack_b->next;
+		printf("Maillon de la liste chaînnée  A%d: %d      B:%d\n", a, (*head_stack_a)->content , (*head_stack_b)->content);
+		tempstack_a = (*head_stack_a);
+		tempstack_b = (*head_stack_b);
+		stack_a = (*head_stack_a)->next;
+		stack_b = (*head_stack_b)->next;
 		free(tempstack_a);
 		free(tempstack_b);
 		a++;

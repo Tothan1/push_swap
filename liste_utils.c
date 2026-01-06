@@ -6,7 +6,7 @@
 /*   By: tle-rhun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 20:13:46 by tle-rhun          #+#    #+#             */
-/*   Updated: 2025/12/22 18:26:43 by tle-rhun         ###   ########.fr       */
+/*   Updated: 2026/01/06 17:11:41 by tle-rhun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_liste	*lstnew(int content)
 		return (NULL);
 	newlst->content = content;
 	newlst->next = NULL;
+	newlst->index = -1;
 	newlst->previous = NULL;
 	return (newlst);
 }
