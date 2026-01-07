@@ -1,31 +1,69 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operation.c                                        :+:      :+:    :+:   */
+/*   operation2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tle-rhun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 11:33:55 by tle-rhun          #+#    #+#             */
-/*   Updated: 2026/01/07 20:11:24 by tle-rhun         ###   ########.fr       */
+/*   Updated: 2026/01/07 16:49:11 by tle-rhun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	operation_swap(t_liste **stack)
+void	pb (t_liste **stack_a, t_liste **stack_b)
 {
-	int	temp;
-	int	temp_index;
-
-	temp = (*stack)->content;
-	temp_index = (*stack)->index;
-	(*stack)->content = ((*stack)->next)->content;
-	(*stack)->index = ((*stack)->next)->index;
-	((*stack)->next)->content = temp;
-	((*stack)->next)->index = temp_index;
+	operation_push(&stack_a, &stack_b);
+	write (1, "Pb\n", 3);
 }
 
-//déplacer mon node au lieu d'en créer un nouveau
+void	pa (t_liste **stack_b, t_liste **stack_a)
+{
+	operation_push(&stack_b, &stack_a);
+	write (1, "Pa\n", 3);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 void	operation_push(t_liste **from, t_liste **dest)
 {
 	t_liste	*temp;
@@ -37,11 +75,11 @@ void	operation_push(t_liste **from, t_liste **dest)
 	*from = (temp)->next;
 	free(temp);
 }
-void	operation_rotate(t_liste **stack)
+void	operation_rotate(t_liste **stack, t_liste **head_stack_a)
 {
-	*stack = (*stack)->next;
+	*head_stack_a = (*stack)->next;
 }
-void	operation_reverse_rotate(t_liste **stack)
+void	operation_reverse_rotate(t_liste **stack, t_liste **head_stack_a)
 {
-	*stack = (*stack)->previous;
+	*head_stack_a = (*stack)->previous;
 }

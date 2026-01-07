@@ -6,7 +6,7 @@
 /*   By: tle-rhun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 17:00:12 by tle-rhun          #+#    #+#             */
-/*   Updated: 2025/12/19 20:11:56 by tle-rhun         ###   ########.fr       */
+/*   Updated: 2026/01/07 14:45:02 by tle-rhun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	*ft_calloc(size_t nmemb, size_t size);
 int		ft_memcmp(const void *str1, const void *str2, size_t n);
 
 /* conversion / misc */
+int	ft_atoi_base(char *str, char *base);
 int		ft_atoi(const char *str);
 char	*ft_itoa(int n);
 

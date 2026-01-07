@@ -6,7 +6,7 @@
 /*   By: tle-rhun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 10:18:43 by tle-rhun          #+#    #+#             */
-/*   Updated: 2025/12/16 17:33:35 by tle-rhun         ###   ########.fr       */
+/*   Updated: 2026/01/07 13:55:25 by tle-rhun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,13 +86,3 @@ char	*ft_super_strjoin(int size, char **strs, char *sep)
 		return (NULL);
 	return (ft_remplir_concat(size, concat, sep, strs));
 }
-
-/* #include <stdio.h>
-int main ( void )
-{
-     int size = 6;
-     char *strs[]={"Bienvenue", "dans", "l'ecole", "42", "de", "Paris"};
-     char sep [] ="test";
-     printf("%s", ft_strjoin(size, strs, sep));
-     return (0);
-} */

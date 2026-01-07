@@ -13,6 +13,8 @@ SRC_FILES = ft_strjoin.c \
 		liste_utils.c \
 		operation.c \
 		index.c \
+		radix_sort.c \
+		algo_sort_small.c \
 		parsing.c
 
 OBJ_FILES = $(SRC_FILES:.c=.o)
