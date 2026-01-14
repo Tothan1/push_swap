@@ -11,10 +11,12 @@ CFLAGS=-Wall -Wextra -Werror
 #### SOURCE ####
 SRC_FILES = ft_strjoin.c \
 		liste_utils.c \
-		operation.c \
+		operation_global.c \
 		index.c \
 		radix_sort.c \
 		algo_sort_small.c \
+		operation_precise.c \
+		operation_precise2.c \
 		parsing.c
 
 OBJ_FILES = $(SRC_FILES:.c=.o)

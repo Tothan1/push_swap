@@ -6,7 +6,7 @@
 /*   By: tle-rhun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 10:18:43 by tle-rhun          #+#    #+#             */
-/*   Updated: 2026/01/07 13:55:25 by tle-rhun         ###   ########.fr       */
+/*   Updated: 2026/01/14 15:56:14 by tle-rhun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ int	ft_seplen(char *sep)
 
 	i = 0;
 	while (sep[i])
-	i++;
+		i++;
 	return (i);
 }
 
 int	ft_strslen(char **strs, int b, int i, int sizestrs)
 {
 	while (strs[b][i])
-	i++;
+		i++;
 	return (sizestrs + i);
 }
 

@@ -6,7 +6,7 @@
 /*   By: tle-rhun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 20:13:46 by tle-rhun          #+#    #+#             */
-/*   Updated: 2026/01/07 11:34:38 by tle-rhun         ###   ########.fr       */
+/*   Updated: 2026/01/14 19:42:19 by tle-rhun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_liste	*lstnew(int content, int index)
 {
 	t_liste	*newlst;
 
-	newlst = malloc(sizeof (t_liste));
+	newlst = malloc(sizeof(t_liste));
 	if (!newlst)
 		return (NULL);
 	newlst->content = content;
@@ -27,20 +27,40 @@ t_liste	*lstnew(int content, int index)
 }
 void	lstadd_front(t_liste **lst, t_liste *new, t_liste *previous)
 {
-	new->previous = previous;
-	new->next = *lst;
-	*lst = new;
+	t_liste	*tail;
+
+	(void)previous;
+	if (!*lst)
+	{
+		*lst = new;
+		new->previous = new;
+		new->next = new;
+	}
+	else
+	{
+		tail = (*lst)->previous;
+		new->next = *lst;
+		new->previous = tail;
+		tail->next = new;
+		(*lst)->previous = new;
+		*lst = new;
+	}
 }
 
 t_liste	*lstlast(t_liste *lst)
 {
-	int	i;
+	int		i;
+	t_liste	*verif;
 
+	verif = lst;
 	i = 0;
 	if (lst == NULL)
 		return (NULL);
-	while (lst->next)
+	while (lst != verif || i == 0)
+	{
 		lst = lst->next;
+		i++;
+	}
 	return (lst);
 }
 
@@ -49,7 +69,11 @@ void	lstadd_back(t_liste **lst, t_liste *new)
 	t_liste	*last;
 
 	if (*lst == NULL)
+	{
 		*lst = new;
+		new->previous = new;
+		new->next = new;
+	}
 	else
 	{
 		last = lstlast(*lst);
@@ -70,11 +94,13 @@ t_liste	*lstfirst(t_liste *lst)
 }
 int	lstsize(t_liste *lst)
 {
-	int	i;
-	t_liste	*verif;
+	int i;
+	t_liste *verif;
 	verif = lst;
 	i = 0;
-	while (lst !=verif || i == 0)
+	if (!lst)
+		return (0);
+	while ( lst != verif || i == 0)
 	{
 		lst = lst->next;
 		i++;
