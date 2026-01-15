@@ -6,7 +6,7 @@
 /*   By: tle-rhun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 11:51:45 by tle-rhun          #+#    #+#             */
-/*   Updated: 2025/11/27 13:26:26 by tle-rhun         ###   ########.fr       */
+/*   Updated: 2026/01/15 16:11:13 by tle-rhun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ size_t	ft_strlcat(char *dest, const char *src, size_t size)
 	dest[dst_len + i] = '\0';
 	return (dst_len + src_len);
 }
-
 
 /* 
 #include <bsd/string.h>

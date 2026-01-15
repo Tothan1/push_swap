@@ -6,27 +6,27 @@
 /*   By: tle-rhun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 17:13:20 by tle-rhun          #+#    #+#             */
-/*   Updated: 2026/01/14 17:47:45 by tle-rhun         ###   ########.fr       */
+/*   Updated: 2026/01/15 16:13:22 by tle-rhun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-
 int	chek_is_sort(t_liste *stack_a, int from)
 {
 	int	i;
-	
+
 	i = 0;
-	while (i++ < lstsize(stack_a) && (stack_a->content < (stack_a->next)->content))
+	while (i++ < lstsize(stack_a)
+		&& (stack_a->content < (stack_a->next)->content))
 		stack_a = stack_a->next;
-	if(i == lstsize(stack_a) && from == 0)
+	if (i == lstsize(stack_a) && from == 0)
 	{
-		free_liste(stack_a);
-		error(stack_a);
-		return (0);
+		if (lstsize(stack_a) > 0)
+			free_liste(stack_a);
+		exit(EXIT_FAILURE);
 	}
-	else if(i == lstsize(stack_a) && from == 1)
+	else if (i == lstsize(stack_a) && from == 1)
 		return (0);
 	else
 		return (1);
@@ -36,7 +36,7 @@ void	indexsort(t_liste *stack_a)
 	int	i;
 	int	a;
 	int	temp_check;
-	
+
 	i = 0;
 	while (i < lstsize(stack_a))
 	{
@@ -96,11 +96,11 @@ void	index_and_check_sort(t_liste **stack_a, t_liste **stack_b)
 {
 	indexsort(*stack_a);
 	chek_is_sort(*stack_a, 0);
-	if (lstsize(*stack_a)>5)
+	if (lstsize(*stack_a) > 5)
 		algo_radix_sort(stack_a, stack_b);
-	else if(lstsize(*stack_a) == 2)
+	else if (lstsize(*stack_a) == 2)
 		sort_2(stack_a);
-	else if(lstsize(*stack_a) == 3)
+	else if (lstsize(*stack_a) == 3)
 		sort_3(stack_a);
 	else
 		algo_sort_small(stack_a, stack_b, lstsize(*stack_a));

@@ -6,7 +6,7 @@
 /*   By: tle-rhun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 16:41:15 by tle-rhun          #+#    #+#             */
-/*   Updated: 2026/01/14 17:48:03 by tle-rhun         ###   ########.fr       */
+/*   Updated: 2026/01/15 16:12:19 by tle-rhun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,12 @@ void				lstadd_front(t_liste **lst, t_liste *new,
 						t_liste *previous);
 void				lstadd_back(t_liste **lst, t_liste *new);
 t_liste				*lstlast(t_liste *lst);
-t_liste				*lstfirst(t_liste *lst);
 int					lstsize(t_liste *lst);
 /* algo_little*/
-void	sort_2(t_liste **stack_a);
-void	sort_3(t_liste **stack_a);
-void				algo_sort_small(t_liste **stack_a, t_liste **stack_b,  int lst_size_a);
+void				sort_2(t_liste **stack_a);
+void				sort_3(t_liste **stack_a);
+void				algo_sort_small(t_liste **stack_a, t_liste **stack_b,
+						int lst_size_a);
 /* algo_radix*/
 void				algo_radix_sort(t_liste **stack_a, t_liste **stack_b);
 /* index*/
@@ -78,10 +78,10 @@ int					ft_malloc(char *sep, int size, char **strs, int b);
 char				*ft_super_strjoin(int size, char **strs, char *sep);
 
 /* free*/
-void	free_all(char **str);
-void	free_liste(t_liste	*stack_a);
+void				free_all(char **str);
+void				free_liste(t_liste *stack_a);
 
 /* error*/
-void	error(t_liste	*stack_a);
+void				error(t_liste *stack_a, char **split);
 
 #endif

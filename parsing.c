@@ -6,35 +6,44 @@
 /*   By: tle-rhun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 13:36:13 by tle-rhun          #+#    #+#             */
-/*   Updated: 2026/01/14 18:57:10 by tle-rhun         ###   ########.fr       */
+/*   Updated: 2026/01/15 16:00:53 by tle-rhun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-void	free_liste(t_liste	*stack_a)
+
+void	free_liste(t_liste *stack_a)
 {
-	t_liste *check_a;
-	t_liste *tempstack_a;
-	
-	int a = 0;
+	t_liste	*check_a;
+	t_liste	*tempstack_a;
+	int		a;
+
+	a = 0;
 	check_a = stack_a;
-	
-	while (a == 0 || check_a != stack_a)
+	while ((a == 0 || check_a != stack_a) && check_a != NULL)
 	{
 		tempstack_a = (stack_a);
-		if(stack_a ->next != NULL)
-			stack_a = (tempstack_a)->next;
-		else
-			check_a = stack_a;
+		stack_a = (tempstack_a)->next;
 		free(tempstack_a);
 		a++;
 	}
 }
-
-void	error(t_liste	*stack_a)
+void	free_all(char **str)
 {
-	if(lstsize(stack_a)>0)
+	int	i;
+
+	i = 0;
+	while (str[i] != NULL)
+		free(str[i++]);
+	free(str);
+}
+
+void	error(t_liste *stack_a, char **split)
+{
+	if (lstsize(stack_a) > 0)
 		free_liste(stack_a);
+	if (split != NULL)
+		free_all(split);
 	write(2, "Error\n", 6);
 	exit(EXIT_FAILURE);
 }
@@ -47,10 +56,10 @@ void	check_occurence(char **split, int check, t_liste *stack_a)
 	while (ft_atoi(split[a]) != ft_atoi(split[check]) && a < check)
 		a++;
 	if (ft_atoi(split[a]) == ft_atoi(split[check]) && a < check)
-		error(stack_a);
+		error(stack_a, split);
 }
 
-int	safe_atoi(char **str, int a, t_liste	*stack_a)
+int	safe_atoi(char **str, int a, t_liste *stack_a)
 {
 	int		i;
 	int		signe;
@@ -73,21 +82,10 @@ int	safe_atoi(char **str, int a, t_liste	*stack_a)
 	nombre = signe * nombre;
 	if ((!ft_isdigit(str[a][i]) && str[a][i] != '\0') || nombre < INT_MIN
 		|| nombre > INT_MAX)
-		error(stack_a);
+		error(stack_a, str);
 	check_occurence(str, a, stack_a);
 	return (nombre);
 }
-void	free_all(char **str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] != NULL)
-		free(str[i++]);
-	free(str);
-}
-
-
 
 t_liste	**recover_arg_in_linked_list(char **av, int ac, t_liste **stack_a,
 		t_liste **stack_b)
@@ -95,7 +93,6 @@ t_liste	**recover_arg_in_linked_list(char **av, int ac, t_liste **stack_a,
 	int		a;
 	char	*join;
 	char	**split;
-	t_liste *last_a;
 
 	*stack_a = NULL;
 	*stack_b = NULL;
@@ -110,10 +107,7 @@ t_liste	**recover_arg_in_linked_list(char **av, int ac, t_liste **stack_a,
 	}
 	free_all(split);
 	if (a < 2)
-		error(*stack_a);
-	last_a = lstlast(*stack_a);
-	last_a->next = *stack_a;
-	(*stack_a)->previous = last_a;
+		error(*stack_a, NULL);
 	return (stack_a);
 }
 
@@ -122,13 +116,17 @@ int	main(int ac, char **av)
 	t_liste	*stack_a;
 	t_liste	*stack_b;
 
+	// t_liste	*check_a;
+	// t_liste	*check_b;
+	// int a = 0;
+	// t_liste *tempstack_a;
 	// t_liste *tempstack_b;
 	if (ac < 2)
-		error(NULL);
+		error(NULL, NULL);
 	recover_arg_in_linked_list(av, ac, &stack_a, &stack_b);
-	// printf("taille de la liste A:%d\n", lstsize(stack_a));
 	index_and_check_sort(&stack_a, &stack_b);
-	/*
+	free_liste(stack_a);
+	/* printf("taille de la liste A:%d\n", lstsize(stack_a));
 		check_a = stack_a;
 		check_b = stack_b;
 		printf("\n\n\n");
@@ -141,9 +139,9 @@ int	main(int ac, char **av)
 				printf("Maillon de la liste chaînnée  A%d: content:%d index:%d",
 					a,
 					(stack_a)->content, (stack_a)->index);
-				tempstack_a = (stack_a);
-				stack_a = (tempstack_a)->next;
-				free(tempstack_a);
+				// tempstack_a = (stack_a);
+				stack_a = (stack_a)->next;
+				// free(tempstack_a);
 			}
 			if((lstsize(stack_b) != 0) && (check_b != stack_b || a == 0) )
 			{
@@ -157,8 +155,6 @@ int	main(int ac, char **av)
 				printf("\n");
 				a++;
 		}
-		printf("\n\n\n");
-		*/
-	free_liste(stack_a);
+		printf("\n\n\n"); */
 	return (1);
 }

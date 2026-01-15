@@ -6,7 +6,7 @@
 /*   By: tle-rhun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 11:33:55 by tle-rhun          #+#    #+#             */
-/*   Updated: 2026/01/09 17:21:53 by tle-rhun         ###   ########.fr       */
+/*   Updated: 2026/01/15 15:31:01 by tle-rhun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	operation_swap(t_liste **stack)
 	((*stack)->next)->index = temp_index;
 }
 
-//déplacer mon node au lieu d'en créer un nouveau
 void	operation_push(t_liste **from, t_liste **dest)
 {
 	t_liste	*temp;

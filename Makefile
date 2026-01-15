@@ -40,6 +40,9 @@ fclean: clean
 	rm -f ${NAME}
 	$(MAKE) -C ./libft fclean
 
+val: all clean
+	valgrind --leak-check=full ./${NAME} "4 1 3 0 2"
+
 re: fclean  all
 
 .PHONY: all clean fclean re 
