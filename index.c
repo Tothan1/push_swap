@@ -6,7 +6,7 @@
 /*   By: tle-rhun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 17:13:20 by tle-rhun          #+#    #+#             */
-/*   Updated: 2026/01/15 16:13:22 by tle-rhun         ###   ########.fr       */
+/*   Updated: 2026/01/15 16:24:17 by tle-rhun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	chek_is_sort(t_liste *stack_a, int from)
 	else
 		return (1);
 }
+
 void	indexsort(t_liste *stack_a)
 {
 	int	i;

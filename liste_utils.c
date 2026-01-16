@@ -6,7 +6,7 @@
 /*   By: tle-rhun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 20:13:46 by tle-rhun          #+#    #+#             */
-/*   Updated: 2026/01/15 15:27:10 by tle-rhun         ###   ########.fr       */
+/*   Updated: 2026/01/15 18:12:47 by tle-rhun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ t_liste	*lstnew(int content, int index)
 	newlst->previous = NULL;
 	return (newlst);
 }
+
 void	lstadd_front(t_liste **lst, t_liste *new, t_liste *previous)
 {
 	t_liste	*tail;
@@ -63,10 +64,12 @@ void	lstadd_back(t_liste **lst, t_liste *new)
 		(*lst)->previous = new;
 	}
 }
+
 int	lstsize(t_liste *lst)
 {
-	int i;
-	t_liste *verif;
+	int		i;
+	t_liste	*verif;
+
 	verif = lst;
 	i = 0;
 	if (!lst)

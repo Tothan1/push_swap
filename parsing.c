@@ -6,37 +6,11 @@
 /*   By: tle-rhun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 13:36:13 by tle-rhun          #+#    #+#             */
-/*   Updated: 2026/01/15 16:00:53 by tle-rhun         ###   ########.fr       */
+/*   Updated: 2026/01/15 23:05:12 by tle-rhun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	free_liste(t_liste *stack_a)
-{
-	t_liste	*check_a;
-	t_liste	*tempstack_a;
-	int		a;
-
-	a = 0;
-	check_a = stack_a;
-	while ((a == 0 || check_a != stack_a) && check_a != NULL)
-	{
-		tempstack_a = (stack_a);
-		stack_a = (tempstack_a)->next;
-		free(tempstack_a);
-		a++;
-	}
-}
-void	free_all(char **str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] != NULL)
-		free(str[i++]);
-	free(str);
-}
 
 void	error(t_liste *stack_a, char **split)
 {
@@ -107,7 +81,10 @@ t_liste	**recover_arg_in_linked_list(char **av, int ac, t_liste **stack_a,
 	}
 	free_all(split);
 	if (a < 2)
-		error(*stack_a, NULL);
+	{
+		free_liste(*stack_a);
+		exit(EXIT_FAILURE);
+	}
 	return (stack_a);
 }
 
@@ -116,45 +93,10 @@ int	main(int ac, char **av)
 	t_liste	*stack_a;
 	t_liste	*stack_b;
 
-	// t_liste	*check_a;
-	// t_liste	*check_b;
-	// int a = 0;
-	// t_liste *tempstack_a;
-	// t_liste *tempstack_b;
-	if (ac < 2)
-		error(NULL, NULL);
+	if (ac == 1)
+		return (1);
 	recover_arg_in_linked_list(av, ac, &stack_a, &stack_b);
 	index_and_check_sort(&stack_a, &stack_b);
 	free_liste(stack_a);
-	/* printf("taille de la liste A:%d\n", lstsize(stack_a));
-		check_a = stack_a;
-		check_b = stack_b;
-		printf("\n\n\n");
-		printf("\n\ntaille de la liste A:%d\n", lstsize(stack_a));
-		printf("taille de la liste B:%d\n", lstsize(stack_b));
-		while (a < 10)
-		{
-			if(a == 0 || check_a != stack_a)
-			{
-				printf("Maillon de la liste chaînnée  A%d: content:%d index:%d",
-					a,
-					(stack_a)->content, (stack_a)->index);
-				// tempstack_a = (stack_a);
-				stack_a = (stack_a)->next;
-				// free(tempstack_a);
-			}
-			if((lstsize(stack_b) != 0) && (check_b != stack_b || a == 0) )
-			{
-					printf("        B%d: content:%d index:%d next:%d", a,
-						(stack_b)->content, (stack_b)->index,
-							(((stack_b)->next)->content));
-					tempstack_b = (stack_b);
-					stack_b = (tempstack_b)->next;
-					free(tempstack_b);
-			}
-				printf("\n");
-				a++;
-		}
-		printf("\n\n\n"); */
-	return (1);
+	return (0);
 }

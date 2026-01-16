@@ -1,6 +1,5 @@
 #### VARIABLES ####
 NAME = push_swap
-BONUS = bonus
 LIBFT = ./libft/libft.a
 # HEADER_PATH = include
 CC= cc
@@ -17,6 +16,7 @@ SRC_FILES = ft_strjoin.c \
 		algo_sort_small.c \
 		operation_precise.c \
 		operation_precise2.c \
+		free.c \
 		parsing.c
 
 OBJ_FILES = $(SRC_FILES:.c=.o)

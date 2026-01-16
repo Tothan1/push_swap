@@ -1,37 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operation_precise2.c                               :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tle-rhun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/21 11:33:55 by tle-rhun          #+#    #+#             */
-/*   Updated: 2026/01/15 16:24:41 by tle-rhun         ###   ########.fr       */
+/*   Created: 2026/01/15 18:18:07 by tle-rhun          #+#    #+#             */
+/*   Updated: 2026/01/15 18:19:03 by tle-rhun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ra(t_liste **stack_a)
+void	free_liste(t_liste *stack_a)
 {
-	operation_rotate(stack_a);
-	write(1, "ra\n", 3);
+	t_liste	*check_a;
+	t_liste	*tempstack_a;
+	int		a;
+
+	a = 0;
+	check_a = stack_a;
+	while ((a == 0 || check_a != stack_a) && check_a != NULL)
+	{
+		tempstack_a = (stack_a);
+		stack_a = (tempstack_a)->next;
+		free(tempstack_a);
+		a++;
+	}
 }
 
-void	rb(t_liste **stack_b)
+void	free_all(char **str)
 {
-	operation_rotate(stack_b);
-	write(1, "rb\n", 3);
-}
+	int	i;
 
-void	rra(t_liste **stack_a)
-{
-	operation_reverse_rotate(stack_a);
-	write(1, "rra\n", 4);
-}
-
-void	rrb(t_liste **stack_b)
-{
-	operation_reverse_rotate(stack_b);
-	write(1, "rrb\n", 4);
+	i = 0;
+	while (str[i] != NULL)
+		free(str[i++]);
+	free(str);
 }
